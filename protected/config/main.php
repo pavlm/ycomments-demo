@@ -84,6 +84,10 @@ return array(
 			'password' => 'ycomments_demo',
 			'charset' => 'utf8',
 		),
+        'fixtures'=>array(
+            'class'=>'system.test.CDbFixtureManager',
+        	'basePath' => dirname(__DIR__).'/models/fixtures',
+        ),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',

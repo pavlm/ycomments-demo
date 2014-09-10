@@ -28,6 +28,7 @@ class News extends CActiveRecord
 						'mapRelatedColumn' => 'news_id',
 						'mapCommentColumn' => 'comment_id',
 						'allowReply' => true,
+						'maxReplyLevel' => 7,
 						'baseViews' => false,
 						'commentableUrl' => function($n){
 							return array('/news/view', 'id' => $n->id);

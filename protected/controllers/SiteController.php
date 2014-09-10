@@ -106,4 +106,17 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	public function actionFixtures() {
+		/* @var $fix CDbFixtureManager */
+		$fix = Yii::app()->fixtures;
+		foreach($fix->getFixtures() as $tableName=>$fixturePath)
+		{
+			$fix->resetTable($tableName);
+			$fix->loadFixture($tableName);
+		}
+		
+		$this->render('fixtures');
+	}
+	
 }

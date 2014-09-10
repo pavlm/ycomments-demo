@@ -15,13 +15,13 @@ $this->widget('zii.widgets.CDetailView', array(
 		'descr',
 	),
 ));
-
-
+?>
+<br>
+<?php
 $this->widget('ycomments.widgets.CommentsWidget', array(
 		'id' => 'newsReviews',
 		'model' => $model, 'view' => 'list',
 		'readOnly' => false,
-		'options' => array('appendComment' => true),
 ));
 
 ?>

@@ -33,6 +33,7 @@
 				array('label'=>'News item 1', 'url'=>array('/news/view', 'id' => 1)),
 				array('label'=>'News item 2', 'url'=>array('/news/view', 'id' => 2)),
 				array('label'=>'Comments admin', 'url'=>array('/ycomments/admin/list')),
+				array('label'=>'Load fixtures', 'url'=>array('/site/fixtures')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
