@@ -47,5 +47,15 @@ return array (
 			'children' => array(
 			),
 	),
-		
+
+	'admin' => array(
+			'type' => CAuthItem::TYPE_ROLE,
+			'description' => '',
+			'bizRule' => '',
+			'data' => '',
+			'assignments' => array(
+					1 => array('bizRule'=>null, 'data'=>null),
+			),
+	),
+	
 );

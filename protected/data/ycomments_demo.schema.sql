@@ -102,6 +102,54 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `notify_global`
+--
+
+DROP TABLE IF EXISTS `notify_global`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notify_global` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commentable_type` varchar(128) NOT NULL,
+  `last_check_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`,`commentable_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `notify_user`
+--
+
+DROP TABLE IF EXISTS `notify_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notify_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commentable_type` varchar(128) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `notify_all` tinyint(1) NOT NULL DEFAULT '0',
+  `notify_reply` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`,`commentable_type`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `notify_subscription`
+--
+
+DROP TABLE IF EXISTS `notify_subscription`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notify_subscription` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `commentable_type` varchar(128) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -23,5 +23,11 @@ $this->widget('ycomments.widgets.CommentsWidget', array(
 		'model' => $model, 'view' => 'list',
 		'readOnly' => false,
 ));
+?>
+
+<?php
+$this->widget('ycomments.widgets.NotifyItemSubscriptionWidget', array(
+		'commentableType' => 'News', 'itemId' => $model->id,
+));
 
 ?>

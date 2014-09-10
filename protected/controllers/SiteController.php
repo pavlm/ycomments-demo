@@ -118,5 +118,9 @@ class SiteController extends Controller
 		
 		$this->render('fixtures');
 	}
+
+	public function actionUserSubscription() {
+		$this->render('userSubscription');
+	}
 	
 }
