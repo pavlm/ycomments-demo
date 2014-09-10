@@ -3,5 +3,6 @@
 .settings
 /assets
 /protected/runtime
+/protected/modules/ycomments
 
 *.log

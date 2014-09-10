@@ -1,43 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "news".
+ * This is the model class for table "tbl_user".
  *
- * The followings are the available columns in table 'news':
+ * The followings are the available columns in table 'tbl_user':
  * @property integer $id
- * @property string $name
- * @property string $descr
+ * @property string $username
+ * @property string $password
+ * @property string $email
  */
-class News extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'news';
+		return 'users';
 	}
 
-
-	public function behaviors(){
-		return array(
-				'commentable' => array(
-						'class' => 'ycomments.components.CommentableBehavior',
-						'commentType' => 'Review',
-						'mapTable' => 'news_comment',
-						'mapRelatedColumn' => 'news_id',
-						'mapCommentColumn' => 'comment_id',
-						'allowReply' => true,
-						'baseViews' => false,
-						'commentableUrl' => function($n){
-							return array('/news/view', 'id' => $n->id);
-						},
-						//'commentCriteria' => array('with' => 'user.profile'),
-						//'notifyEnabled' => true,
-				),
-		);
-	}
-	
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -46,13 +27,11 @@ class News extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, name', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>45),
-			array('descr', 'safe'),
+			array('username, password, email', 'required'),
+			array('username, password, email', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, descr', 'safe', 'on'=>'search'),
+			array('id, username, password, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,8 +53,9 @@ class News extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'descr' => 'Descr',
+			'username' => 'Username',
+			'password' => 'Password',
+			'email' => 'Email',
 		);
 	}
 
@@ -98,8 +78,9 @@ class News extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('descr',$this->descr,true);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('email',$this->email,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -110,7 +91,7 @@ class News extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return News the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

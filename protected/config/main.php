@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Web Application with YComments',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -26,6 +26,30 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
+
+		'ycomments' => array(
+				'class' => 'application.modules.ycomments.YCommentsModule',
+				'commentableTypes' => array(
+						'news' => 'News',
+				),
+				// set this to the class name of the model that represents your users
+				'userModelClass' => 'User',
+				// set this to the username attribute of User model class
+				'userNameAttribute' => 'username',
+				// set this to the email attribute of User model class
+				'userEmailAttribute' => 'email',
+				// you can set controller filters that will be added to the comment controller {@see CController::filters()}
+				//          'controllerFilters'=>array(),
+				// you can set accessRules that will be added to the comment controller {@see CController::accessRules()}
+				//          'controllerAccessRules'=>array(),
+				// you can extend comment class and use your extended one, set path alias here
+				//          'commentModelClass'=>'comment.models.Comment',
+				// 		    		'onNewComment' => array('Organization', 'onNewCommentHandler'),
+				'notifyMailFrom' => 'user@yandex.ru',
+				//'adminLayout' => '//layouts/main-admin',
+				'criteriaAdminUsers' => array('condition' => 't.id == 1'),
+				'adminUserClosure' => function($u) { return $u->id == 1; },
+		),
 	),
 
 	// application components
@@ -34,9 +58,18 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		
+		'authManager'=>array(
+				//'class'=>'CPhpAuthManager',
+				'authFile' => __DIR__.'/auth.php',
+				'defaultRoles'=>array('guest', 'authenticated', 'commentator', 'comment-author'),
+		),
+			
+				
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
