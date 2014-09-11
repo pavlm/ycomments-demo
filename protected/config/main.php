@@ -48,7 +48,7 @@ return array(
 				// 		    		'onNewComment' => array('Organization', 'onNewCommentHandler'),
 				'notifyMailFrom' => 'user@yandex.ru',
 				//'adminLayout' => '//layouts/main-admin',
-				'criteriaAdminUsers' => array('condition' => 't.id == 1'),
+				'criteriaAdminUsers' => array('condition' => 't.id = 1'),
 				'adminUserClosure' => function($u) { return $u->id == 1; },
 		),
 	),
@@ -100,11 +100,10 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
 				array(
 					'class'=>'CWebLogRoute',
+					'categories' => array('notify'),
 				),
-				*/
 			),
 		),
 	),

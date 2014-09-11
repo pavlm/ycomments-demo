@@ -34,7 +34,7 @@ class News extends CActiveRecord
 							return array('/news/view', 'id' => $n->id);
 						},
 						//'commentCriteria' => array('with' => 'user.profile'),
-						//'notifyEnabled' => true,
+						'notifyEnabled' => true,
 				),
 		);
 	}

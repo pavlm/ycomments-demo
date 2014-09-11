@@ -123,4 +123,13 @@ class SiteController extends Controller
 		$this->render('userSubscription');
 	}
 	
+	public function actionNotify() {
+		
+		//define('YCOMMENTS_DEBUG', true);
+		define('YCOMMENTS_NOMAIL', true);
+		
+		$this->forward('ycomments/notify/performNotify');
+		$this->render('notify');
+	}
+	
 }
