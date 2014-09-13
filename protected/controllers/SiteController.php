@@ -128,7 +128,7 @@ class SiteController extends Controller
 		//define('YCOMMENTS_DEBUG', true);
 		define('YCOMMENTS_NOMAIL', true);
 		
-		$this->forward('ycomments/notify/performNotify');
+		$this->forward('ycomments/notify/performNotify', false);
 		$this->render('notify');
 	}
 	
